@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Java Code Checker</title>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Java Code Checker</p>
+          <h1>Paste Java. Get clear fixes.</h1>
+        </div>
+        <div class="score-badge" aria-live="polite">
+          <span id="scoreValue">--</span>
+          <small>quality score</small>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Java code checker workspace">
+        <div class="editor-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Java source</h2>
+              <p id="codeMeta">0 lines</p>
+            </div>
+            <div class="toolbar" aria-label="Editor actions">
+              <button class="tool-button" id="sampleButton" type="button" title="Load sample code">
+                <span aria-hidden="true" class="icon icon-spark"></span>
+                Sample
+              </button>
+              <button class="tool-button subtle" id="clearButton" type="button" title="Clear editor">
+                <span aria-hidden="true" class="icon icon-x"></span>
+                Clear
+              </button>
+            </div>
+          </div>
+          <div class="editor-wrap">
+            <pre id="lineNumbers" aria-hidden="true">1</pre>
+            <textarea id="codeInput" spellcheck="false" aria-label="Paste Java code here" placeholder="Paste your Java code here..."></textarea>
+          </div>
+          <div class="action-row">
+            <button class="primary-button" id="checkButton" type="button">
+              <span aria-hidden="true" class="icon icon-check"></span>
+              Check code
+            </button>
+            <p id="analysisNote">Runs in your browser. No upload needed.</p>
+          </div>
+        </div>
+
+        <aside class="results-panel" aria-label="Analysis results">
+          <div class="result-visual">
+            <canvas id="qualityCanvas" width="640" height="220" aria-label="Quality map visualization"></canvas>
+            <div class="visual-copy">
+              <strong id="resultTitle">Ready to check</strong>
+              <span id="resultSubtitle">Paste Java code and run the checker.</span>
+            </div>
+          </div>
+
+          <div class="metrics-grid" aria-label="Code metrics">
+            <div class="metric">
+              <span id="issueCount">0</span>
+              <small>issues</small>
+            </div>
+            <div class="metric">
+              <span id="lineCount">0</span>
+              <small>lines</small>
+            </div>
+            <div class="metric">
+              <span id="complexityCount">0</span>
+              <small>complexity</small>
+            </div>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Result filters">
+            <button class="tab active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="tab" type="button" data-filter="error" role="tab" aria-selected="false">Errors</button>
+            <button class="tab" type="button" data-filter="warning" role="tab" aria-selected="false">Warnings</button>
+            <button class="tab" type="button" data-filter="style" role="tab" aria-selected="false">Style</button>
+          </div>
+
+          <div id="issuesList" class="issues-list" aria-live="polite">
+            <div class="empty-state">
+              <strong>No analysis yet</strong>
+              <span>Your report will appear here with line numbers and fixes.</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
